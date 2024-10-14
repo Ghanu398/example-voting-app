@@ -39,6 +39,10 @@ pipeline{
                           docker build -t 533267431526.dkr.ecr.us-east-1.amazonaws.com/worker:1.0  -f worker/Dockerfile .
                           aws ecr get-login-password  | docker login --username AWS --password-stdin 533267431526.dkr.ecr.us-east-1.amazonaws.com
                           docker push 533267431526.dkr.ecr.us-east-1.amazonaws.com/worker:1.0
+
+                          docker build -t 533267431526.dkr.ecr.us-east-1.amazonaws.com/result:1.0 -f result/Dockerfile .
+                          aws ecr get-login-password  | docker login --username AWS --password-stdin 533267431526.dkr.ecr.us-east-1.amazonaws.com
+                          docker push 533267431526.dkr.ecr.us-east-1.amazonaws.com/result:1.0
                           
                           '''
 
