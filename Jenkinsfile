@@ -31,9 +31,12 @@ pipeline{
 
             steps{
                 withCredentials([usernamePassword(credentialsId: 'AWS', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
-                          docker build --target dev -t 533267431526.dkr.ecr.us-east-1.amazonaws.com/vote -f vote/Dockerfile:1.0 .
+                          sh '''
+                          docker build --target dev -t 533267431526.dkr.ecr.us-east-1.amazonaws.com/vote:1.0 -f vote/Dockerfile .
                           aws ecr get-login-password  | docker login --username AWS --password-stdin 533267431526.dkr.ecr.us-east-1.amazonaws.com
-                          docker push 533267431526.dkr.ecr.us-east-1.amazonaws.com/vote -f vote/Dockerfile:1.0
+                          docker push 533267431526.dkr.ecr.us-east-1.amazonaws.com/vote:1.0
+
+                          '''
 
 }
             }
