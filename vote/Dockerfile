@@ -7,7 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the application directory
-WORKDIR /usr/local/app
+
 
 # Install our requirements.txt
 COPY vote/requirements.txt ./requirements.txt
@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 FROM base AS dev
 RUN pip install watchdog
 ENV FLASK_ENV=development
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
 
 # Define the final stage that will bundle the application for production
 FROM base AS final

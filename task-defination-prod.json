@@ -1,0 +1,48 @@
+{
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "family": "my-voting-app",
+    "containerDefinitions": [
+      {
+        "name": "vote",
+        "image": "533267431526.dkr.ecr.us-east-1.amazonaws.com/vote:2.0",
+        "essential": true,
+        "portMappings": [
+          {
+            "name": "vote_ports",
+            "containerPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "environment": [
+          {
+            "name": "REDIS_HOST",
+            "value": "redis"  
+          },
+          {
+            "name": "REDIS_PORT",
+            "value": "6379"  
+          }
+        ]
+      },
+      {
+        "name": "redis",
+        "image": "redis",
+        "essential": true,
+        "portMappings": [
+          {
+            "name": "redis_ports",
+            "containerPort": 6379,
+            "protocol": "tcp"
+          }
+        ]
+      }
+    ],
+    "volumes": [],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::533267431526:role/ecs_execution_role"
+  }
+  
