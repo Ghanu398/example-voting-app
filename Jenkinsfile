@@ -4,7 +4,7 @@ pipeline{
         stage("docker"){
             steps{
                 sh '''
-                docker image -t manual-awscli build .
+                docker image build -t manual-awscli  .
                 '''
             }
             post {
